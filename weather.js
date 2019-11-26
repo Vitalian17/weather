@@ -1,6 +1,6 @@
 let appId = '81c893d2188d88ea5cb8a3c064d5a126';
-let units = 'imperial'; // other option is metric
-let searchMethod; // q means searching as a string.
+let units = 'imperial'; 
+let searchMethod; 
 
 function getSearchMethod(searchTerm) {
     if(searchTerm.length === 5 && Number.parseInt(searchTerm) + '' === searchTerm)
@@ -11,7 +11,7 @@ function getSearchMethod(searchTerm) {
 
 function searchWeather(searchTerm) {
     getSearchMethod(searchTerm);
-    fetch(`http://api.openweathermap.org/data/2.5/weather?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?${searchMethod}=${searchTerm}&APPID=${appId}&units=${units}`)
         .then((result) => {
             return result.json();
         }).then((res) => {
@@ -54,7 +54,7 @@ function init(resultFromServer) {
     let cityHeader = document.getElementById('cityHeader');
 
     let weatherIcon = document.getElementById('documentIconImg');
-    weatherIcon.src = 'http://openweathermap.org/img/w/' + resultFromServer.weather[0].icon + '.png';
+    weatherIcon.src = 'https://openweathermap.org/img/w/' + resultFromServer.weather[0].icon + '.png';
 
     let resultDescription = resultFromServer.weather[0].description;
     weatherDescriptionHeader.innerText = resultDescription.charAt(0).toUpperCase() + resultDescription.slice(1);
